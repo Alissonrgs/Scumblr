@@ -79,6 +79,9 @@ Scumblr::Application.configure do
 
   #config.assets.prefix = "/assets_dev"
 
+  # Config redis url
+  config.redis_connection_string = 'redis://redis:6379/0'
+
 end
 
 silence_warnings do
