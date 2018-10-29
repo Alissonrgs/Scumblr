@@ -3,7 +3,7 @@ version: '3'
 services:
 
   scumblr:
-    image: morphuslabs/scumblr
+    build: .
     container_name: scumblr
     environment:
       RAILS_ENV: development
@@ -34,9 +34,9 @@ services:
       - 5432:5432
 
   sidekiq:
-    image: morphuslabs/scumblr
+    build: .
     command: bundle exec sidekiq -l log/sidekiq.log
-    container_name: sedikiq
+    container_name: sidekiq
     volumes:
       - .:/scumblr
     networks:
