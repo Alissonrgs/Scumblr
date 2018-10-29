@@ -1,0 +1,62 @@
+version: '3'
+
+services:
+
+  scumblr:
+    build: .
+    container_name: scumblr
+    environment:
+      RAILS_ENV: development
+    command: bundle exec rails s -b 0.0.0.0
+    volumes:
+      - .:/scumblr
+    networks:
+      - nw
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgres
+      - sidekiq
+      - redis
+
+  postgres:
+    image: postgres:9.6
+    container_name: postgres
+    environment:
+      POSTGRES_USER: scumblr
+      POSTGRES_PASSWORD: scumblr
+      POSTGRES_DB: scumblr_dev
+    volumes:
+      - pg_data:/var/lib/postgresql
+    networks:
+      - nw
+    ports:
+      - 5432:5432
+
+  sidekiq:
+    build: .
+    command: bundle exec sidekiq -l log/sidekiq.log
+    container_name: sidekiq
+    volumes:
+      - .:/scumblr
+    networks:
+      - nw
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    volumes:
+      - redis_data:/data
+    networks:
+      - nw
+    ports:
+      - 6379:6379
+
+volumes:
+  pg_data:
+  redis_data:
+
+networks:
+  nw:

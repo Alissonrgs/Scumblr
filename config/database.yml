@@ -7,7 +7,7 @@ development:
   adapter: postgresql
   encoding: unicode
   database: scumblr_dev
-  host: localhost
+  host: postgres
   username: scumblr
   password: scumblr
   port: 5432
