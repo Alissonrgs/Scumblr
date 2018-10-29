@@ -80,6 +80,8 @@ You can create simple or complex workflows to be used along with your results. T
 
 Take a look at the [wiki](https://github.com/Netflix/Scumblr/wiki) for detailed instructions on setup, configuration, and use!
 
+Take a look at the [docs](https://github.com/Alissonrgs/Scumblr/blob/master/docs/docker.md) for detailed instructions on setup with docker!
+
 ## Release History ##
 
 **Version 2.1** - "Reliablity, Useability and Performace Edition" - *September 26th, 2017*
